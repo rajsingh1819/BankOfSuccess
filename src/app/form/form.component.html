@@ -1,0 +1,190 @@
+<div class="container">
+  <h1 style="font-weight: bold;">Loan Aplication :-</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="registerfn()">
+    <div>
+      <h4 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Detials :-</h4>
+          <!-- Name detials -->
+      <div class="mb-3">
+        <label for="name" class="form-label" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Name :-</label>
+        <input type="name" class="form-control" id="name" aria-describedby="name" placeholder="Full Name"
+          formControlName="name" [ngClass]="{error : getControl('name')?.errors && getControl('name')?.touched}">
+        <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
+          <small class="text-danger" *ngIf="getControl('name')?.errors?.['required']">First name is required.</small>
+          <small class="text-danger" *ngIf="getControl('name')?.errors?.['maxlength']">Only 40 characters are
+            allowed.</small>
+        </div>
+      </div>
+                 <!-- Address detials -->
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Email address :-</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="Enter email id" formControlName="email"
+          [ngClass]="{error : getControl('email')?.errors && getControl('email')?.touched}">
+      </div>
+             <!-- Number detials -->
+      <div class="mb-3">
+        <label for="number" class="form-label" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Mobile No :-</label>
+        <input type="number" class="form-control" id="number" aria-describedby="number" placeholder="Enter Number"
+          formControlName="number" [ngClass]="{error : getControl('number')?.errors && getControl('number')?.touched}">
+      </div>
+          <!-- nationality detials -->
+      <div class="mb-3">
+        <label style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Nationality :-</label>
+        <select class="form-select" aria-label="Default select example" name="nationality" formControlName="nationality">
+          <option selected>--selected nationality--</option>
+          <option>Indian</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <!-- Gender detials -->
+      <div class="mb-3">
+        <label for="gender" class="form-label" formControlName="gender" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Gender :-</label>
+        <select class="form-select" aria-label="Default select example" name="gender" formControlName="gender">
+          <option selected>--selected Gender--</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+      <!-- Date of Birth detials -->
+      <div class="mb-3">
+        <label for="date" class="form-label" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Date of Birth :-</label>
+        <input type="date" class="form-control" id="date" aria-describedby="date" placeholder="Full Name"
+          formControlName="date">
+      </div>
+      <!-- Age details -->
+      <div class="mb-3">
+        <label for="number" class="form-label" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Age :-</label>
+        <input type="number" class="form-control" id="age" aria-describedby="age" placeholder="Enter Your age"
+          formControlName="age" [ngClass]="{error : getControl('age')?.errors && getControl('age')?.touched}">
+      </div>
+      <!-- Adhaar Card Number detials -->
+      <div class="mb-3">
+        <label for="number" class="form-label" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Adhaar Card Number :-</label>
+        <input type="number" class="form-control" id="card" aria-describedby="card" placeholder="Enter Your Adhaar No"
+          formControlName="card" [ngClass]="{error : getControl('card')?.errors && getControl('card')?.touched}">
+      </div>
+      <!-- Address detials -->
+      <div class="mb-3">
+        <label for="adders" class="form-label" formControlName="adders" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Address :-</label>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" formControlName="adders"
+            id="floatingTextarea2" style="height: 100px"
+            [ngClass]="{error : getControl('adders')?.errors && getControl('adders')?.touched}"></textarea>
+          <label for="floatingTextarea2">address</label>
+        </div>
+      </div>
+      <!-- Type of Loan detials -->
+
+      <div class="mb-3">
+        <label style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Type of Loan :-</label>
+        <select class="form-select" aria-label="Default select example" name="loan" formControlName="loan"
+          (change)="toCheckLoanType()">
+          <option>--selected Loan--</option>
+          <option>Personal Loan</option>
+          <option>Home Loan</option>
+        </select>
+      </div>
+
+    </div>
+
+         <!-- loan detials Personal loan -->
+         <div *ngIf="pLoan">
+          <h3 style="font-weight: bold;">Personal Loan Info :-</h3>
+          <form  [formGroup]="registerForm">
+            <div class="input-group mb-3" style="width: 60%;">
+              <span class="input-group-text" id="inputGroup-sizing-default">Company Name</span>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" formControlName="company" name="company">
+            </div>
+
+            <div class="input-group mb-3" style="width: 60%;">
+              <span class="input-group-text" id="inputGroup-sizing-default">Total Work Experience (Years)</span>
+              <input type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" formControlName="experience" name="experience">
+            </div>
+
+            <div class="input-group mb-3" style="width: 60%;">
+              <span class="input-group-text" id="inputGroup-sizing-default">Annual Salary</span>
+              <input type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" formControlName="salary" name="salary">
+            </div>
+
+            <div class="input-group mb-3" style="width: 60%;">
+              <span class="input-group-text" id="inputGroup-sizing-default">Existing EMI Amount</span>
+              <input type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" formControlName="emi" name="emi">
+            </div>
+
+            <div class="input-group mb-3" style="width: 60%;">
+              <span class="input-group-text" id="inputGroup-sizing-default">Loan Amount</span>
+              <input type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" formControlName="amount" name="amount">
+            </div>
+
+            <div class="input-group mb-3" style="width: 60%;">
+              <span class="input-group-text" id="inputGroup-sizing-default">Duration in Months</span>
+              <select type="number" class="form-select" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" formControlName="duration" name="duration">
+                <option selected></option>
+               <option value="">6</option>
+               <option value="">12</option>
+               <option value="">24</option>
+               <option value="">36</option>
+              </select>
+            </div>
+
+          </form>
+        </div>
+
+           <!-- loan detials Home loan -->
+    <div *ngIf="isLoan">
+      <h3 style="font-weight: bold;">Home Loan Info :-</h3>
+      <form>
+        <div class="input-group mb-3" style="width: 60%;">
+          <span class="input-group-text" id="inputGroup-sizing-default">Property Sqft</span>
+          <input type="number" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" formControlName="property" name="property">
+        </div>
+
+        <div class="input-group mb-3" style="width: 60%;">
+          <span class="input-group-text" id="inputGroup-sizing-default">Builder Name</span>
+          <input type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" formControlName="builder" name="builder">
+        </div>
+
+        <div class="input-group mb-3" style="width: 60%;">
+          <span class="input-group-text" id="inputGroup-sizing-default">Property Value</span>
+          <input type="number" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" formControlName="value" name="value">
+        </div>
+
+        <div class="input-group mb-3" style="width: 60%;">
+          <span class="input-group-text" id="inputGroup-sizing-default">Annual Salary</span>
+          <input type="number" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" formControlName="salaryH" name="salaryH">
+        </div>
+
+        <div class="input-group mb-3" style="width: 60%;">
+          <span class="input-group-text" id="inputGroup-sizing-default">Loan Amount</span>
+          <input type="number" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" formControlName="loanH" name="loanH">
+        </div>
+
+        <div class="input-group mb-3" style="width: 60%;">
+          <span class="input-group-text" id="inputGroup-sizing-default">Duration in Months</span>
+          <select type="number" class="form-select" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" formControlName="durationH" name="durationH">
+            <option selected></option>
+           <option value="">6</option>
+           <option value="">12</option>
+           <option value="">24</option>
+           <option value="">36</option>
+          </select>
+        </div>
+
+      </form>
+    </div>
+
+    <button (click)="resetForm"  class="btn btn-success">Submit</button>
+  </form>
+</div>

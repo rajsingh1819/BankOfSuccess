@@ -1,0 +1,19 @@
+.container{
+  padding-top: 1rem;
+  width: 40%;
+  background-color: #846cf1af;
+  border: 2px solid black;
+  padding-bottom: 20px;
+  margin-top: 40px;
+}
+.container:hover{
+
+  cursor: pointer;
+}
+.error{
+border: 1px solid red;
+}
+/* select option ul{
+  display:none;
+} */
+
